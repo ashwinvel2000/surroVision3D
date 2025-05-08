@@ -4,24 +4,27 @@ This repository contains implementations and experiments of several deep learnin
 
 ## Notebooks Available
 
-- `UFNO.ipynb` – U-FNO model using Fourier Neural Operators.
-- `Vanilla_UNet.ipynb` – Experiments on 1500-sample PBU dataset using U-Net and ResNet.
-- `CNN.ipynb` – Lightweight CNN architecture for PBU.
-- `GNN.ipynb` – Graph Neural Network implemented to estimate gas saturation
+* `UFNO.ipynb` – U-FNO model using Fourier Neural Operators.
+* `Vanilla_UNet.ipynb` – Experiments on 1500-sample PBU dataset using U-Net and ResNet.
+* `CNN.ipynb` – Lightweight CNN architecture for PBU.
+* `GNN.ipynb` – Graph Neural Network implemented to estimate gas saturation.
 
 ## Models Implemented
 
-- **Convolutional U-Net**  
-  A deep encoder-decoder architecture with skip connections for learning multiscale spatial-temporal features.
+* **Convolutional U-Net**
+  A deep encoder–decoder architecture with skip connections for learning multiscale spatial–temporal features.
 
-- **U-FNO (Fourier Neural Operator)**  
-  Captures global spatial dependencies through spectral convolutions, especially effective for smooth geophysical fields like PBU.
+* **U-FNO (Fourier Neural Operator)**
+  Captures global spatial dependencies through spectral convolutions (FFT-based), especially effective for smooth geophysical fields like PBU.
 
-- **Graph Neural Network (GNN)**  
-  Leverages structured grid information and neighborhood relations, showing excellent generalization for gas saturation prediction.
+* **Graph Neural Network (GNN)**
+  Treats the reservoir as a graph of connected cells, learning from node features and neighbor relationships. Uses dynamic EdgeConv layers with residual connections for local spatial interactions.
 
-- **ResNet**  
+* **ResNet**
   A residual convolutional network adapted for temporal prediction with limited data.
+
+* **CNN**
+  A lightweight convolutional network baseline for pressure buildup prediction.
 
 ## Pretrained Models & Outputs
 
@@ -31,16 +34,36 @@ You can access all models, results, and visualizations through this OneDrive fol
 
 ## Evaluation Metrics
 
-Models are compared using:
+The models are compared using the following metrics:
 
-- \( R^2 \) Score: Goodness of fit
-- MAE: Mean Absolute Error
-- Size: Model memory footprint (MB/GB)
+* **R² Score**: Coefficient of determination (goodness of fit)
+* **MAE**: Mean Absolute Error
+* **Size**: Model memory footprint
+
+| Model                   | # Training Samples | R² (PBU) | R² (Gas) | MAE (PBU) | MAE (Gas) |    Size |
+| ----------------------- | -----------------: | -------: | -------: | --------: | --------: | ------: |
+| **CNN**                 |              1,000 |     0.65 |      N/A |      7.25 |       N/A | 2.42 MB |
+| **Convolutional U-Net** |              2,500 |     0.96 |     0.87 |      1.31 |      0.02 |  180 MB |
+| **U-FNO**               |              1,500 |     0.97 |     0.86 |      1.20 |      0.03 |    3 GB |
+| **ResNet**              |                150 |     0.77 |      N/A |     10.78 |       N/A | 45.6 MB |
+| **Graph Neural Net**    |              3,500 |     0.89 |     0.91 |      2.65 |      0.01 |    2 MB |
 
 ## Requirements
 
-- Python 3.8+
-- `torch`, `torchvision`, `torch-geometric`
-- `matplotlib`, `numpy`, `scikit-learn`
+To set up the environment, use the provided `environment.yml` file:
 
+```bash
+conda env create -f environment.yml
+```
 
+### Core Dependencies
+
+* Python 3.8+
+* PyTorch
+* TorchVision
+* Torch‑Geometric
+* NumPy
+* Matplotlib
+* Scikit‑Learn
+
+---
