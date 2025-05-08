@@ -2,6 +2,11 @@
 
 This repository contains implementations and experiments of several deep learning models for predicting **Pressure Buildup (PBU)** and **Gas Saturation** in carbon capture and storage (CCS) reservoir simulations. The models were evaluated on various 2D/3D datasets with differing spatial and temporal resolutions.
 
+
+## U-FNO - an enhanced Fourier neural operator-based deep-learning model for multiphase flow
+In this work, we introduce a model architecture, [U-FNO] (https://www.sciencedirect.com/science/article/pii/S0309170822000562), for solving a dynamic CO<sub>2</sub>-water multiphase flow problem in the context of carbon capture and storage (CCS). The figure below shows that schematic of U-FNO, where we enhances the experssiveness of [Fourier Neural Operator (FNO)](https://arxiv.org/abs/2010.08895) by appending a mini U-Net path to the Fourier layer. 
+![model](https://user-images.githubusercontent.com/34537648/160530063-255b53c6-f4db-4ceb-82ba-d6f7c2297ef3.jpg)
+
 ## Notebooks Available
 
 * `UFNO.ipynb` – U-FNO model using Fourier Neural Operators.
