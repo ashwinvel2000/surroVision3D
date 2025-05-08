@@ -1,0 +1,21 @@
+name: surroVision3D
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - pytorch
+  - torchvision
+  - cudatoolkit=11.3      # or remove if you want CPU‑only
+  - numpy
+  - matplotlib
+  - scikit-learn
+  - notebook
+  - pip
+  - pip:
+    - torch-geometric      # core GNN library
+    - torch-scatter
+    - torch-sparse
+    - torch-cluster
+    - torch-spline-conv
